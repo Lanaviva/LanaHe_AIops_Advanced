@@ -19,11 +19,11 @@ PYTHON_CONCEPTS = {
 @app.route('/')
 def hello_world():
     return '''
-    Welcome to the Python Learning Chat!
+    <pre>Welcome to the Python Learning Chat!
     Available endpoints:
     - /chat?message=your_message
     - /history
-    - /learn?topic=python_concept
+    - /learn?topic=python_concept<pre>
     '''
 
 @app.route('/chat')
@@ -36,7 +36,7 @@ def chat():
     
     # Store in chat history
     chat_entry = {
-        'timestamp': timestamp,
+        'a timestamp': timestamp,
         'message': message,
         'response': response
     }
@@ -44,8 +44,6 @@ def chat():
     
     # Return JSON response
     return jsonify(chat_entry)
-
-
 
 
 def process_message(message):
@@ -74,6 +72,8 @@ def get_history():
 
 @app.route('/learn')
 def learn():
+    # message = request.args.get('message', '').lower()
+    # timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
     topic = request.args.get('topic', '').lower()
     if topic in PYTHON_CONCEPTS:
         return jsonify({
